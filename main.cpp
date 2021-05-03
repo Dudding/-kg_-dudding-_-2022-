@@ -4,58 +4,59 @@
 
 using namespace std;
 
-class NumStrings{
-    unordered_map<int, string> nums;
-    vector<int>dgt;
+class NumStrings {
+    unordered_map<int, string> numMap;
+    vector<int> digit;
 
 public:
 
-    NumStrings(){
-        nums[1] = "One";
-        nums[2] = "Two";
-        nums[3] = "Three";
-        nums[4] = "Four";
-        nums[5] = "Five";
-        nums[6] = "Six";
-        nums[7] = "Seven";
-        nums[8] = "Eight";
-        nums[9] = "Nine";
-        nums[0] = "Zero";
-        dgt.reserve(1000);
+    NumStrings() {
+        numMap[1] = "One";
+        numMap[2] = "Two";
+        numMap[3] = "Three";
+        numMap[4] = "Four";
+        numMap[5] = "Five";
+        numMap[6] = "Six";
+        numMap[7] = "Seven";
+        numMap[8] = "Eight";
+        numMap[9] = "Nine";
+        numMap[0] = "Zero";
+        digit.reserve(1000);
     }
 
 
-    void printAsString(const int* arr, int size){
+    void printAsString(const int *arr, int size) {
         string str;
-        for(int i = 0; i < size; ++i) {
+        int j;
+        for (int i = 0; i < size; ++i) {
             int num1 = *(arr + i);
-            int j = 0;
-            if(num1 == 0)
-                str += nums[dgt[j]];
+            j = 0;
+
+            if (num1 == 0)
+                str += numMap[digit[j]];
             else
                 while (num1 != 0) {
-                    dgt[j] = num1 % 10;
+                    digit[j] = num1 % 10;
                     num1 = num1 / 10;
                     ++j;
                 }
-            while( j > 0){
+
+            while (j > 0) {
                 --j;
-                str += nums[dgt[j]];
+                str += numMap[digit[j]];
             }
-            if(i < size - 1){
+
+
+            if (i < size - 1) {
                 str += ",";
             }
-            dgt.clear();
+            digit.clear();
         }
         cout << str;
     }
 
 
-
 };
-
-
-
 
 
 int main() {
